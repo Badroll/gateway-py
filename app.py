@@ -20,43 +20,44 @@ def export_excel():
     from openpyxl.styles import Font, PatternFill, Border, Side, Alignment
     from io import BytesIO
     
-    json = {
-        "filename" : "rekap absen siswa",
-        "title": "Rekap absen siswa",
-        "subtitle": "Periode: Januari 2024",
-        "data": [
-            {
-                "id": 5,
-                "token": "e389125964c81aa6e7a739bdc499c064",
-                "tanggal": "2024-01-20 14:56:19",
-                "siswa_nama": "Farauq Rifky"
-            },
-            {
-                "id": 4,
-                "token": "658f5738560fb2654280062115f0bb7d",
-                "tanggal": "2024-01-20 07:54:52",
-                "siswa_nama": "Farauq Rifky"
-            },
-            {
-                "id": 3,
-                "token": "7bfbd2a4cd40c84c6a03ba9b2b4c6d28",
-                "tanggal": "2024-01-20 07:54:01",
-                "siswa_nama": "Farauq Rifky"
-            },
-            {
-                "id": 2,
-                "token": "c18e3dd79e17a56bdbc5299cd1d66353",
-                "tanggal": "2024-01-20 07:52:34",
-                "siswa_nama": "Farauq Rifky"
-            },
-            {
-                "id": 1,
-                "token": "89a278cce3475b7f0d509ef3a9760145",
-                "tanggal": "2024-01-18 00:00:00",
-                "siswa_nama": "Aqillani"
-            }
-        ]
-    }
+    # json = {
+    #     "filename" : "rekap absen siswa",
+    #     "title": "Rekap absen siswa",
+    #     "subtitle": "Periode: Januari 2024",
+    #     "data": [
+    #         {
+    #             "id": 5,
+    #             "token": "e389125964c81aa6e7a739bdc499c064",
+    #             "tanggal": "2024-01-20 14:56:19",
+    #             "siswa_nama": "Farauq Rifky"
+    #         },
+    #         {
+    #             "id": 4,
+    #             "token": "658f5738560fb2654280062115f0bb7d",
+    #             "tanggal": "2024-01-20 07:54:52",
+    #             "siswa_nama": "Farauq Rifky"
+    #         },
+    #         {
+    #             "id": 3,
+    #             "token": "7bfbd2a4cd40c84c6a03ba9b2b4c6d28",
+    #             "tanggal": "2024-01-20 07:54:01",
+    #             "siswa_nama": "Farauq Rifky"
+    #         },
+    #         {
+    #             "id": 2,
+    #             "token": "c18e3dd79e17a56bdbc5299cd1d66353",
+    #             "tanggal": "2024-01-20 07:52:34",
+    #             "siswa_nama": "Farauq Rifky"
+    #         },
+    #         {
+    #             "id": 1,
+    #             "token": "89a278cce3475b7f0d509ef3a9760145",
+    #             "tanggal": "2024-01-18 00:00:00",
+    #             "siswa_nama": "Aqillani"
+    #         }
+    #     ]
+    # }
+    
     json = request.get_json()
     print(json)
     filename = json["filename"]
@@ -134,5 +135,12 @@ def send_wa_1():
     return helper.composeReply("SUCCESS", "Pesan dikirim")
 
 
+route = "/toko_buah_webhook"
+@app.route(route, methods=['POST'])
+def toko_buah_webhook():
+    
+    return helper.composeReply("SUCCESS", "webhook processed")
+
+ 
 if __name__ == '__main__':
     app.run(host = env.runHost, port = env.runPort, debug = env.runDebug)
