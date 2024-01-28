@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify, send_file, Blueprint, url_for
+from flask import Flask, request, jsonify, send_file, Blueprint, url_for, redirect
 from flask_cors import CORS, cross_origin
 from datetime import datetime, timedelta
 import os
@@ -131,10 +131,10 @@ route = "/send_wa_1"
 def send_wa_1():
     phone = request.form.get("phone")
     message = request.form.get("message")
-    redirect = request.form.get("redirect")
+    red = request.form.get("redirect")
     helper.send_wa_multipleSendText(phone, message, log=False)
-    if not redirect == None:
-        return redirect
+    if not red == None:
+        return redirect(red)
     return helper.composeReply("SUCCESS", "Pesan dikirim")
 
 
