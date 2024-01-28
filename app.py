@@ -131,7 +131,10 @@ route = "/send_wa_1"
 def send_wa_1():
     phone = request.form.get("phone")
     message = request.form.get("message")
+    redirect = request.form.get("redirect")
     helper.send_wa_multipleSendText(phone, message, log=False)
+    if not redirect == None:
+        return redirect
     return helper.composeReply("SUCCESS", "Pesan dikirim")
 
 
@@ -139,7 +142,7 @@ route = "/toko_buah_webhook"
 @app.route(route, methods=['POST'])
 def toko_buah_webhook():
     
-    return helper.composeReply("SUCCESS", "webhook processed")
+    return helper.composeReply("SUCCESS", "webhook processed from gatew")
 
  
 if __name__ == '__main__':
